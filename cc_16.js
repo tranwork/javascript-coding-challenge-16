@@ -22,3 +22,23 @@ async function fetchProductsAsync() {
       handleError(error);
     }
   }
+
+  // Task 4: Display products in the DOM
+function displayProducts(products) {
+    const container = document.getElementById('product-container');
+    container.innerHTML = '';
+  
+    products.slice(0, 5).forEach(product => {
+      const { name, price, image } = product.fields;
+      const productCard = document.createElement('div');
+      productCard.className = 'product-card';
+  
+      productCard.innerHTML = `
+        <img src="${image[0].url}" alt="${name}" />
+        <div class="product-name">${name}</div>
+        <div class="product-price">$${(price / 100).toFixed(2)}</div>
+      `;
+  
+      container.appendChild(productCard);
+    });
+  }
